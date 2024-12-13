@@ -16,4 +16,7 @@ ENV PORT=8080
 
 EXPOSE ${PORT}
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+CMD curl http://localhost:${PORT}/status || exit 1
+
 ENTRYPOINT SERVER_PORT=${PORT} java -jar /app/app.jar -Dserver.port=${PORT}
