@@ -35,30 +35,15 @@ public class NoticeController {
     @PostMapping("/notice")
     public String createNotice(@ModelAttribute @Valid Notice notice, BindingResult formResults, Model model){
 
+        System.out.println("Entering controller");
+
         if (formResults.hasErrors()){
             return "notice";
         }
 
-        // System.out.println("Notice METADATA created ---> " + notice.toString());
-
-        // long dateConverted = DateConversion.dateToEpochMili(notice.getPostDate().toString());
-
-        // JsonArrayBuilder jsonCategories = Json.createArrayBuilder();
-        // for (String category : notice.getCategories()) {
-        //     jsonCategories.add(category);
-        // }
-
-        // JsonObject json = Json.createObjectBuilder()
-        // .add("title", notice.getTitle())
-        // .add("poster", notice.getPoster())
-        // .add("postDate", dateConverted)
-        // .add("categories", jsonCategories)
-        // .add("text",notice.getText())
-        // .build();
-
         JsonObject json = JsonManagement.stringToJsonBuild(notice);
 
-        System.out.println("json Constructed ---> " + json.toString());
+        // System.out.println("json Constructed ---> " + json.toString());
 
         String[] fetchResult = noticeServ.postToNoticeServer(notice, json);
         String exceptionErrorDetector = fetchResult[0];
