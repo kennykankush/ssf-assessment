@@ -29,7 +29,7 @@ public class NoticeService {
 
 	public String[] postToNoticeServer(Notice notice, JsonObject json) {
 
-		System.out.println(constant.getServer_url());
+		System.out.println("Entering Service");
 
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -46,6 +46,8 @@ public class NoticeService {
             String id = JsonManagement.fetchID(responseBody);
             long timestamp = JsonManagement.fetchTimestamp(responseBody);
             noticeRepo.insertNotices(id, timestamp);
+
+			System.out.println("Entering Insert");
             return new String[] {"success", id};
         	}
 

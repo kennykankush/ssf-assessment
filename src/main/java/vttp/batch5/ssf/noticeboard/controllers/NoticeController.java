@@ -58,7 +58,10 @@ public class NoticeController {
 
         model.addAttribute("id", "The notice posting id is " + id);
 
+        System.out.println("Exiting controller");
+
         return "success";
+        
         
     }
     
