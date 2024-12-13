@@ -29,6 +29,8 @@ public class NoticeService {
 
 	public String[] postToNoticeServer(Notice notice, JsonObject json) {
 
+		System.out.println(constant.getServer_url());
+
 		RestTemplate restTemplate = new RestTemplate();
 		
 		HttpHeaders header = new HttpHeaders();

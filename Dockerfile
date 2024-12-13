@@ -15,4 +15,4 @@ ENV SERVER_PORT=8080
 
 EXPOSE ${SERVER_PORT}
 
-ENTRYPOINT java -jar target/noticeboardapp-0.0.1-SNAPSHOT.jar
+ENTRYPOINT java -jar target/noticeboard-0.0.1-SNAPSHOT.jar
