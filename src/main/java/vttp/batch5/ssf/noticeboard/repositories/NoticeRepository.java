@@ -12,9 +12,8 @@ public class NoticeRepository {
 
 	/*
 	 * Write the redis-cli command that you use in this method in the comment. 
-	 * RPUSH postIDs [ID]
-	 * 
-	 *
+	 * HSET redisKey id timestamp
+
 	 */
 
 	 @Autowired

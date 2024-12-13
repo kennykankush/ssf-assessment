@@ -1,18 +1,19 @@
-FROM maven:3.9.9-eclipse-temurin-23
+FROM maven:3.9.9-eclipse-temurin-23 AS builder
 
-LABEL name="ssf-assessment"
+WORKDIR /app
 
-ARG APP_DIR=/app
-
-COPY mvnw .
-COPY pom.xml .
-COPY .mvn .mvn
-COPY src src
+COPY . .
 
 RUN mvn package -Dmaven.test.skip=true
 
-ENV SERVER_PORT=8080
+FROM maven:3.9.9-eclipse-temurin-23
 
-EXPOSE ${SERVER_PORT}
+WORKDIR /app
 
-ENTRYPOINT java -jar target/noticeboard-0.0.1-SNAPSHOT.jar
+COPY --from=builder /app/target/*.jar app.jar
+
+ENV PORT=8080
+
+EXPOSE ${PORT}
+
+ENTRYPOINT SERVER_PORT=${PORT} java -jar /app/app.jar -Dserver.port=${PORT}
