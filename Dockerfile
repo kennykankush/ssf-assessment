@@ -12,6 +12,8 @@ WORKDIR /app
 
 COPY --from=builder /app/target/*.jar app.jar
 
+RUN apt update && apt install -y curl
+
 ENV PORT=8080
 
 EXPOSE ${PORT}
