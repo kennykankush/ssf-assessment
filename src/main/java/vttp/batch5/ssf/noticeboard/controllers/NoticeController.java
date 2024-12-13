@@ -35,8 +35,6 @@ public class NoticeController {
     @PostMapping("/notice")
     public String createNotice(@ModelAttribute @Valid Notice notice, BindingResult formResults, Model model){
 
-        System.out.println("Entering controller");
-
         if (formResults.hasErrors()){
             return "notice";
         }
@@ -57,8 +55,6 @@ public class NoticeController {
         String id = fetchResult[1];
 
         model.addAttribute("id", "The notice posting id is " + id);
-
-        System.out.println("Exiting controller");
 
         return "success";
         
